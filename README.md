@@ -169,25 +169,6 @@ Ran 7 tests in 0.202s - OK
 
 ---
 
-## 2-Minute Live Demo Walkthrough (For Hackathon Judges)
-
-1. **The Context (0:00 - 0:30)**:
-   "Judges, the official challenge asked for an open-source AI project advancing the Agent Skill Open Standard. Current coding agents need skills, but open-source authors have no standard way to turn their libraries into skills without manual boilerplate. We built SkillForge: the compiler and package manager that turns any library or CLI into an Agent Skill."
-
-2. **Compilation (0:30 - 1:10)**:
-   *(Run `skillforge compile examples/sample_library.py --name audio-dsp-toolkit`)*
-   "Here, SkillForge inspects our Python library using AST analysis. It extracts all functions, parameter types, default values, and docstrings. In seconds, it generates `SKILL.md` with typed YAML schemas, standalone CLI runners in `scripts/`, test cases in `examples/`, and references."
-
-3. **Standard Audit (1:10 - 1:40)**:
-   *(Run `skillforge validate output_skills/audio-dsp-toolkit`)*
-   "Next, we audit the compiled package with our standard linter. Notice that all 13 rules of the Agent Skill Open Standard pass with a 100/100 score, including kebab-case validation, schema typing, and relative link resolution."
-
-4. **Installation & Packaging (1:40 - 2:00)**:
-   *(Run `skillforge install output_skills/audio-dsp-toolkit --workspace && skillforge list`)*
-   "Finally, our package manager installs the skill directly into `.agents/skills` where any compliant coding agent discovers it automatically. SkillForge empowers the entire open-source ecosystem to convert their tools into Agent Skills. It is MIT-licensed and ready for use."
-
----
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
