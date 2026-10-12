@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillForge | Agent Skill Open Standard Compiler</title>
+  <meta name="description" content="Autonomous compiler and package manager for Agent Skill Open Standard (ASOS) packages.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <div class="brand-box">
+        <span class="brand-name">SkillForge</span>
+        <span class="version-tag">v1.0.0</span>
+      </div>
+      <span class="nav-divider">/</span>
+      <span class="nav-desc">Agent Skill Open Standard Compiler & Manager</span>
+    </div>
+    <div class="nav-right">
+      <div class="status-badge" id="standard-badge">
+        <span class="status-dot"></span>
+        <span class="status-text">ASOS 1.0 Compliant</span>
+      </div>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="nav-link">MIT License</a>
+    </div>
+  </header>
+
+  <!-- Workspace Grid -->
+  <main class="workbench-grid">
+    <!-- Left Column: Source Input & Compiler Options -->
+    <section class="workbench-panel input-panel">
+      <div class="panel-header">
+        <div class="panel-title">Source Input</div>
+        <div class="panel-subtitle">Target library or CLI to compile</div>
+      </div>
+
+      <div class="control-group">
+        <label for="source-type-select">Source Specification Type</label>
+        <select id="source-type-select" class="input-control">
+          <option value="python">Python Module / Library (AST Extraction)</option>
+          <option value="cli">CLI Executable / Manual (--help Extraction)</option>
+        </select>
+      </div>
+
+      <div class="control-row">
+        <div class="control-group flex-1">
+          <label for="skill-name-input">Skill Identifier</label>
+          <input type="text" id="skill-name-input" class="input-control" value="audio-dsp-toolkit" placeholder="kebab-case identifier">
+        </div>
+        <div class="control-group action-group">
+          <label>&nbsp;</label>
+          <button type="button" class="btn btn-secondary" id="btn-load-sample">Load Sample</button>
+        </div>
+      </div>
+
+      <div class="control-group editor-group">
+        <div class="editor-header">
+          <label for="source-code-editor">Source Code / Interface Specification</label>
+          <span class="editor-mode-label" id="editor-mode-label">python_ast</span>
+        </div>
+        <textarea id="source-code-editor" class="input-control code-editor" spellcheck="false" placeholder="# Paste Python library source code or CLI help text here..."></textarea>
+      </div>
+
+      <div class="action-footer">
+        <button type="button" class="btn btn-primary" id="btn-compile">
+          Compile Agent Skill Package
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Column: Compilation Artifacts & Standard Audit -->
+    <section class="workbench-panel output-panel">
+      <div class="panel-header">
+        <div class="panel-title">Compiled Skill Artifacts</div>
+        <div class="header-tools">
+          <div class="compliance-indicator" id="compliance-indicator">
+            <span class="comp-label">Specification Audit:</span>
+            <span class="comp-value" id="comp-score">Pending</span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-install-workspace" disabled>
+            Install to .agents/skills
+          </button>
+        </div>
+      </div>
+
+      <!-- Artifact View Tabs -->
+      <div class="tab-strip">
+        <button type="button" class="tab-btn active" data-tab="tab-spec">SKILL.md</button>
+        <button type="button" class="tab-btn" data-tab="tab-scripts">Runner Scripts</button>
+        <button type="button" class="tab-btn" data-tab="tab-audit">Standard Checklist</button>
+        <button type="button" class="tab-btn" data-tab="tab-files">Package Tree</button>
+      </div>
+
+      <!-- Tab Content: SKILL.md -->
+      <div class="tab-pane active" id="tab-spec">
+        <pre class="artifact-view" id="view-skill-md"># Compilation output will appear here after clicking "Compile Agent Skill Package"...</pre>
+      </div>
+
+      <!-- Tab Content: Scripts -->
+      <div class="tab-pane" id="tab-scripts">
+        <div class="sub-nav-row" id="scripts-selector-row">
+          <span class="sub-label">Select script:</span>
+          <select id="script-file-select" class="input-control select-sm"></select>
+        </div>
+        <pre class="artifact-view" id="view-script-code"># No runner scripts compiled yet.</pre>
+      </div>
+
+      <!-- Tab Content: Standard Audit Checklist -->
+      <div class="tab-pane" id="tab-audit">
+        <div class="audit-summary-bar">
+          <span id="audit-status-text">Run compilation to evaluate Agent Skill Open Standard checklist.</span>
+        </div>
+        <div class="audit-table-wrap">
+          <table class="data-table" id="audit-table">
+            <thead>
+              <tr>
+                <th>Rule Name</th>
+                <th>Status</th>
+                <th>Verification Detail</th>
+              </tr>
+            </thead>
+            <tbody id="audit-table-body">
+              <tr>
+                <td colspan="3" class="empty-cell">No audit performed yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab Content: File Tree -->
+      <div class="tab-pane" id="tab-files">
+        <div class="tree-view" id="tree-view-container">
+          <div class="empty-state">Tree view available after compilation.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Technical Footer -->
+  <footer class="bottom-bar">
+    <div class="footer-segment">
+      <span class="dim-label">Compiler Standard:</span>
+      <span class="value-label">Agent Skill Open Standard (ASOS) v1.0.0</span>
+    </div>
+    <div class="footer-segment">
+      <span class="dim-label">Open-Weight Model Adapter:</span>
+      <span class="value-label">Ollama / Qwen 2.5 Coder / Llama 3.2</span>
+    </div>
+    <div class="footer-segment">
+      <span class="dim-label">Target Runtimes:</span>
+      <span class="value-label">Antigravity, Claude Code, Cursor, OpenHands</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

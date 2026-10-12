@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skillforge"
+version = "1.0.0"
+description = "Agent Skill Open Standard Compiler & Package Manager. Turn any library or CLI into an installable agent skill."
+readme = "README.md"
+authors = [{ name = "SkillForge Contributors" }]
+license = { text = "MIT" }
+keywords = ["agent-skills", "agent-skill-open-standard", "cli", "compiler", "open-source", "open-weight"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Code Generators",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.31.0",
+    "rich>=13.7.0",
+    "click>=8.1.7",
+    "jsonschema>=4.21.0"
+]
+
+[project.scripts]
+skillforge = "skillforge.cli:main"

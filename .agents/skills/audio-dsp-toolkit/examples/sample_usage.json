@@ -1,0 +1,39 @@
+{
+  "skill": "audio-dsp-toolkit",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "capability": "normalize-audio",
+      "sample_inputs": {
+        "samples": "test_value",
+        "target_db": "...",
+        "peak_limit": "0.99"
+      },
+      "expected_output_type": "List"
+    },
+    {
+      "capability": "apply-bandpass-filter",
+      "sample_inputs": {
+        "samples": "test_value",
+        "low_cutoff_hz": "200",
+        "high_cutoff_hz": "5000"
+      },
+      "expected_output_type": "List"
+    },
+    {
+      "capability": "create-spectrumanalyzer",
+      "sample_inputs": {
+        "sample_rate": "44100",
+        "fft_size": "1024"
+      },
+      "expected_output_type": "Any"
+    },
+    {
+      "capability": "compute-energy-bins",
+      "sample_inputs": {
+        "samples": "test_value"
+      },
+      "expected_output_type": "Dict"
+    }
+  ]
+}
